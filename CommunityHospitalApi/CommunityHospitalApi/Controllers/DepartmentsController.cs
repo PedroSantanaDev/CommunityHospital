@@ -19,11 +19,15 @@ namespace CommunityHospitalApi.Controllers
             _context = context;
         }
 
-        // GET: Departments
-        [HttpGet("GetDepartments")]
+        /// <summary>
+        /// List of departments
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <returns></returns>
+        [HttpGet("{apiKey}")]
         public async Task<IActionResult> GetDepartments(string apiKey)
         {
-            if (Shared.Helper.IsApiKeyValid(apiKey))
+            if (!Shared.Helper.IsApiKeyValid(apiKey))
             {
                 return Unauthorized("Invalid Api key.");
             }
@@ -31,11 +35,16 @@ namespace CommunityHospitalApi.Controllers
             return Ok(await _context.Departments.ToListAsync());
         }
 
-        // GET: Departments/Details/5
-        [HttpGet("GetDepartment")]
+        /// <summary>
+        /// Get a department
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{apiKey}/{id}")]
         public async Task<IActionResult> GetDepartment(string apiKey, Guid? id)
         {
-            if (Shared.Helper.IsApiKeyValid(apiKey))
+            if (!Shared.Helper.IsApiKeyValid(apiKey))
             {
                 return Unauthorized("Invalid Api key.");
             }
@@ -56,13 +65,16 @@ namespace CommunityHospitalApi.Controllers
             return Ok(department);
         }
 
-        // POST: Departments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost("CreateDepartment")]
-        public async Task<IActionResult> CreateDepartment(string apiKey, [Bind("DepartmentId,DepartmentName,ManagerFirstName,ManagerLastName,DateCreated")] Department department)
+        /// <summary>
+        /// Create department
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="department"></param>
+        /// <returns></returns>
+        [HttpPost("{apiKey}")]
+        public async Task<IActionResult> CreateDepartment(string apiKey, [Bind("DepartmentName,ManagerFirstName,ManagerLastName,DateCreated")] Department department)
         {
-            if (Shared.Helper.IsApiKeyValid(apiKey))
+            if (!Shared.Helper.IsApiKeyValid(apiKey))
             {
                 return Unauthorized("Invalid Api key.");
             }
@@ -80,13 +92,17 @@ namespace CommunityHospitalApi.Controllers
         }
 
 
-        // POST: Departments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPut("EditDepartment")]
-        public async Task<IActionResult> EditDepartment(string apiKey, Guid id, [Bind("DepartmentId,DepartmentName,ManagerFirstName,ManagerLastName")] Department department)
+        /// <summary>
+        /// Edit department
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="id"></param>
+        /// <param name="department"></param>
+        /// <returns></returns>
+        [HttpPut("{apiKey}/{id}")]
+        public async Task<IActionResult> EditDepartment(string apiKey, Guid id, [Bind("DepartmentName,ManagerFirstName,ManagerLastName")] Department department)
         {
-            if (Shared.Helper.IsApiKeyValid(apiKey))
+            if (!Shared.Helper.IsApiKeyValid(apiKey))
             {
                 return Unauthorized("Invalid Api key.");
             }
@@ -109,10 +125,16 @@ namespace CommunityHospitalApi.Controllers
             return Ok(department);
         }
 
-        [HttpDelete("DeleteDepartment")]
+        /// <summary>
+        /// Delete department
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{apiKey}/{id}")]
         public async Task<IActionResult> DeleteDepartment(string apiKey, Guid id)
         {
-            if (Shared.Helper.IsApiKeyValid(apiKey))
+            if (!Shared.Helper.IsApiKeyValid(apiKey))
             {
                 return Unauthorized("Invalid Api key.");
             }
