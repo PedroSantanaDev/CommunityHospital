@@ -641,7 +641,367 @@ namespace CommunityHospitalApi.Migrations
             migrationBuilder.InsertData(
               table: "Medication",
               columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
-              values: new object[] { Guid.NewGuid(), "", "", "", "", "", "", "" }
+              values: new object[] { Guid.NewGuid(), "Isosrbide Dinitrate", 8.59, "100 Tabs", "40 MG", "QID PO", 22, "5/25/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Zoltarin", 5.07, "250 Tabs", "10 MG", "AC PO", 15, "5/25/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Prazosin", 12.86, "50 Tabs", "1 MG", "BID", 0, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Bentylol", 18.65, "25 Tabs", "24 MG", "TID", 14, "5/29/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Ventolin", 4.95, "150 Tabs", "20 MG", "TID PO", 19, "5/26/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Lanoxin", 2.45, "50 Tabs", "30 MG", "BID PO", 40, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Lorazepam", 1.95, "200 Tabs", "10 MG", "TID PO", 100, "5/23/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Oramorphsr", 2.25, "100 Tabs", "5 MG", "Q4H PRN", 14, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Thoridazine", 2.95, "250 ML Bottle", ".5 MG PER 10 MLS", "10 MLS OD", 12, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Tamoxifen", 12.95, "100 Tabs", "30 MG", "OD", 23, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Dilantin", 4.95, "100 Tabs", "100 MG", "BID", 200, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Primidone", 2.95, "50 Tabs", "125 MG", "BID", 12, "5/29/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Haloperidol", 9.95, "25 Tabs", "1 MG", "QHS", 22, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Benztropine", 1.56, "20 Tabs", ".5 MG", "HS", 15, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Sinemet", 12.98, "100 Tabs", "50 MG", "TID", 25, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Warfarin Sodium", 4.56, "200 Tabs", "10 MG", "TID", 22, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Furosenide", 7.89, "100 Tabs", "25 MG", "Q6H", 2, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Haldol", 14.95, "500 Tabs", "5MG", "BID", 200, "5/23/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Ativan", 12.95, "200 Tabs", "1 MG", "PRN", 275, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Oxazepam", 2, "100 Tabs", "30 MG", "TID", 14, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Thorazine", 40.75, "12 Bottles", "50 MG", "Q 1 - 4 HRS", 24, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Cyclobenzaprine", 80.95, "250 Tabs", "10 MG", "BID", 28, "5/25/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Isoproterenol", 18.95, "100 Tabs", "10 MG", "BID", 14, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Levadopa", 14.89, "50 Tabs", "100 MG", "BID", 18, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Diclofenac", 65, "100 Tabs", "50 MG", "QAM", 4, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Ciprofloxacin", 29.95, "200 Tabs", "25 MG", "QHS", 5, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Amantidine", 12.95, "100 Tabs", "50 MG", "BID", 23, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Carbamazepine", 18.95, "100 Tabs", "200 MG", "QID", 14, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Prepulsid", 32.49, "200 Tabs", "10 MG", "QID", 27, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Pravachol", 18.75, "100 Tabs", "25 MG", "QID", 7, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Dimenhydrinate", 25, "1000 Tabs", "50 MG", "PRN", 175, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Isordil", 14.86, "100 Tabs", "20 MG", "BID", 9, "5/25/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Nitro Spray", 22, "16 Sprayers", "10 MG", "2 SPRAYS PRN", 23, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Meperidinehcl", 25, "50 Ampoules", "50 MG", "Q3H PRN", 4, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Chlorpromazine", 32.99, "200 Tabs", "25 MG", "Q4H PRN", 5, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Licarbonate", 8.95, "100 Tabs", "20 MG", "BID", 40, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Lactulose", 18.99, "100 Tabs", "25 MG", "TID", 29, "5/29/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Ancef", 9.59, "50 Tabs", "10 MG", "QAM", 2, "5/25/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Allofurinol", 45.99, "20 Tabs", "75 MG", "BID", 5, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Calcitonin", 9.95, "200 Tabs", "100 MG", "BID", 25, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Orphenadrine", 25.95, "100 Tabs", "25 MG", "Q6H", 15, "5/22/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Glyburide", 200, "50 Tabs", "5 MG", "BID", 22, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Cloxacilin", 19.95, "1 Litre Bottle", "50 MG", "100 MLBID", 14, "5/30/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Paveral", 17.75, "100 Tabs", "20 MG", "Q4H", 12, "5/29/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Novasen", 25.95, "200 Tabs", "325 MG", "Q6H", 16, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Amitriptyline", 35.95, "100 Tabs", "150 MG", "TID", 15, "5/23/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Cefuroxime", 22.95, "50 Tabs", "500 MG", "Q12H", 5, "5/22/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Nardil", 38.95, "25 Tabs", "60 MG", "OD", 7, "5/22/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Navane", 5.95, "100 Tabs", "30 MG", "OD", 16, "5/25/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Lithium Citrate", 25, "200 Tabs", "600 MG", "QID", 25, "5/27/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Phenobarbital", 10.95, "100 Tabs", "30 MG", "BID", 40, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Humulin", 23.95, "50 Tabs", "25 UNITS", "QID", 4, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Insulin", 18, "50 Ampoules", "12 UNITS", "QID SC", 85, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Streptokinase", 35, "25 Ampoules", "30 UNITS", "OD IV", 14, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Phenergan", 17.89, "12 Ampoules", "10 MG", "QID IM", 15, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Serax", 14.95, "100 Tabs", "30 MG", "Q8HRS", 12, "5/28/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Lopressor", 28.95, "50 Tabs", "100 MG", "BID", 17, "5/24/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Lopid", 18.95, "50 Tabs", "600 MG", "BID", 14, "5/26/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Novulin", 85.95, "12 Ampoules", "12 UNITS", "TID SC", 15, "5/31/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Anapronil", 1.73, "100 Tabs", "25 MG", "BID", 4, "5/26/2015" }
+              );
+
+            migrationBuilder.InsertData(
+              table: "Medication",
+              columns: new[] { "MedicationId", "MedicationDescription", "MedicationCost", "PackageSize", "Strength", "Sig", "UnitsUsedYtd", "LastPrescribedDate" },
+              values: new object[] { Guid.NewGuid(), "Toradol", 18, "100 CC", "30 mg", "Q6H", 2, "5/31/2015" }
               );
         }
     }
