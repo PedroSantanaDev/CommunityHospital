@@ -15,10 +15,14 @@ namespace CommunityHospitalApi.Database
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Medication> Medications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>().ToTable("Department");
+            modelBuilder.Entity<Medication>().ToTable("Medication");
+            modelBuilder.Entity<Medication>(m => m.HasCheckConstraint("CK_Cost", "MedicationCost >= 0"));
+            modelBuilder.Entity<Medication>().Property(m => m.MedicationCost).HasColumnType("decimal(18,4)");
         }
     }
 }
