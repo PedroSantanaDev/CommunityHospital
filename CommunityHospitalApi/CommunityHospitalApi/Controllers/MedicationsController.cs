@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CommunityHospitalApi.Database;
 using CommunityHospitalApi.Models;
+using CommunityHospitalApi.Attributes;
 
 namespace CommunityHospitalApi.Controllers
 {
+    [ApiKey]
+    [ApiController]
+    [Route("[controller]")]
     public class MedicationsController : Controller
     {
         private readonly CommunityHospitalDbContext _context;
@@ -21,38 +23,33 @@ namespace CommunityHospitalApi.Controllers
         /// <summary>
         /// List of medications
         /// </summary>
-        /// <param name="apiKey"></param>
-        /// <returns></returns>
-        [HttpGet("Medications/{apiKey}")]
-        public async Task<IActionResult> GetMedications(string apiKey)
+        /// <remarks>
+        /// Sample request:
+        /// Get Medications/{apiKey}
+        /// {
+        /// }
+        /// </remarks>
+        /// <returns>List of medications.</returns>
+        [HttpGet]
+        public async Task<IActionResult> GetMedications()
         {
-            if (!Shared.Helper.IsApiKeyValid(apiKey))
-            {
-                return Unauthorized("Invalid Api key.");
-            }
-
             return Ok(await _context.Medications.ToListAsync());
         }
 
         /// <summary>
         /// Get a medication
         /// </summary>
-        /// <param name="apiKey"></param>
+        ///  /// <remarks>
+        /// Sample request:
+        /// Get Medications/{apiKey}/{id}
+        /// {
+        /// }
+        /// </remarks>
         /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("Medication/{apiKey}/{id}")]
-        public async Task<IActionResult> GetMedication(string apiKey, Guid? id)
-        {
-            if (!Shared.Helper.IsApiKeyValid(apiKey))
-            {
-                return Unauthorized("Invalid Api key.");
-            }
-
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+        /// <returns>The medication.</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMedication(Guid id)
+        {          
             var medication = await _context.Medications
                 .FirstOrDefaultAsync(m => m.MedicationId == id);
 
@@ -67,17 +64,26 @@ namespace CommunityHospitalApi.Controllers
         /// <summary>
         /// Create a medication
         /// </summary>
-        /// <param name="apiKey"></param>
+        /// /// <remarks>
+        /// Sample request:
+        /// Post Medications/{apiKey}
+        /// {
+        ///     "MedicationId" = "1D27F736-2BA7-484A-A939-D63344E81194",
+        ///     "MedicationDescription" = "Ventolin Inhaler",
+        ///     "MedicationCost" = 12.45,
+        ///     "PackageSize" = "Case Of 12",
+        ///     "Strength" = "1 MG/MIN",
+        ///     "Sig" = "STAT",
+        ///     "UnitsUsedYtd" = 4,
+        ///     "LastPrescribedDate = "2015-05-30 00:00:00.0000000"
+        /// }
+        /// </remarks>
         /// <param name="medication"></param>
-        /// <returns></returns>
-        [HttpPost("CreateMedication/{apiKey}")]
-        public async Task<IActionResult> CreateMedication(string apiKey, [Bind("MedicationId, MedicationDescription, MedicationCost, PackageSize, Strength, Sig, UnitsUsedYtd, LastPrescribedDate")] Medication medication)
+        /// <returns>The newly created medication.</returns>
+        [HttpPost]
+        public async Task<IActionResult> CreateMedication( [Bind("MedicationId, MedicationDescription, MedicationCost, PackageSize, Strength, Sig, UnitsUsedYtd, LastPrescribedDate")] Medication medication)
         {
-            if (!Shared.Helper.IsApiKeyValid(apiKey))
-            {
-                return Unauthorized("Invalid Api key.");
-            }
-
+        
             if (!ModelState.IsValid)
             {
                 return BadRequest();
@@ -94,18 +100,25 @@ namespace CommunityHospitalApi.Controllers
         /// <summary>
         /// Edit medication
         /// </summary>
-        /// <param name="apiKey"></param>
+        /// Sample request:
+        /// Put EditMedication/{apiKey}/{id}
+        /// {
+        ///     "MedicationId" = "1D27F736-2BA7-484A-A939-D63344E81194",
+        ///     "MedicationDescription" = "Ventolin Inhaler",
+        ///     "MedicationCost" = 12.45,
+        ///     "PackageSize" = "Case Of 12",
+        ///     "Strength" = "1 MG/MIN",
+        ///     "Sig" = "STAT",
+        ///     "UnitsUsedYtd" = 4,
+        ///     "LastPrescribedDate = "2015-05-30 00:00:00.0000000"
+        /// }
+        /// </remarks>
         /// <param name="id"></param>
         /// <param name="medication"></param>
-        /// <returns></returns>
-        [HttpPut("EditMedication/{apiKey}/{id}")]
-        public async Task<IActionResult> EditMedication(string apiKey, Guid id, [Bind("MedicationId,MedicationDescription,MedicationCost,PackageSize,Strength,Sig,UnitsUsedYtd,LastPrescribedDate")] Medication medication)
+        /// <returns>The edited medication</returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditMedication(Guid id, [Bind("MedicationId,MedicationDescription,MedicationCost,PackageSize,Strength,Sig,UnitsUsedYtd,LastPrescribedDate")] Medication medication)
         {
-            if (!Shared.Helper.IsApiKeyValid(apiKey))
-            {
-                return Unauthorized("Invalid Api key.");
-            }
-
             if (id != medication.MedicationId)
             {
                 return NotFound();
@@ -130,17 +143,17 @@ namespace CommunityHospitalApi.Controllers
         /// <summary>
         /// Delete medication
         /// </summary>
-        /// <param name="apiKey"></param>
+        /// ///  /// <remarks>
+        /// Sample request:
+        /// Delete DeleteMedication/{apiKey}/{id}
+        /// {
+        /// }
+        /// </remarks>
         /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete("DeleteMedication/{apiKey}/{id}")]
-        public async Task<IActionResult> DeleteMedication(string apiKey, Guid? id)
+        /// <returns>The deleted medication</returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMedication(Guid? id)
         {
-            if (!Shared.Helper.IsApiKeyValid(apiKey))
-            {
-                return Unauthorized("Invalid Api key.");
-            }
-
             if (id == null)
             {
                 return NotFound();
