@@ -6,6 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using CommunityHospitalApi.Database;
 using CommunityHospitalApi.Models;
 using CommunityHospitalApi.Attributes;
+using CommunityHospitalApi.Services;
+using AutoMapper;
+using System.Collections.Generic;
+using CommunityHospitalApi.Resources;
+using CommunityHospitalApi.Validators;
 
 namespace CommunityHospitalApi.Controllers
 {
@@ -15,111 +20,98 @@ namespace CommunityHospitalApi.Controllers
     public class MedicationsController : Controller
     {
         private readonly CommunityHospitalDbContext _context;
+        private readonly IMedicationService _medicationService;
+        private readonly IMapper _mapper;
 
-        public MedicationsController(CommunityHospitalDbContext context)
+        public MedicationsController(IMedicationService medicationService, IMapper mapper)
         {
-            _context = context;
+            _medicationService = medicationService;
+            _mapper = mapper;
         }
+
         /// <summary>
         /// List of medications
         /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// Get Medications/{apiKey}
-        /// {
-        /// }
-        /// </remarks>
         /// <returns>List of medications.</returns>
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetMedications()
         {
-            return Ok(await _context.Medications.ToListAsync());
+            var medications = await  _medicationService.GetAllMedications();
+
+            var medicationResources = _mapper.Map < IEnumerable < Medication >, IEnumerable<MedicationResource>>(medications);
+
+            return Ok(medicationResources);
         }
 
         /// <summary>
         /// Get a medication
         /// </summary>
-        ///  /// <remarks>
-        /// Sample request:
-        /// Get Medications/{apiKey}/{id}
-        /// {
-        /// }
-        /// </remarks>
         /// <param name="id"></param>
         /// <returns>The medication.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMedication(Guid id)
-        {          
-            var medication = await _context.Medications
-                .FirstOrDefaultAsync(m => m.MedicationId == id);
+        {
+            var medication = await _medicationService.GetMedicationById(id);
 
-            if (medication == null)
+            if(medication == null)
             {
                 return NotFound();
             }
 
-            return Ok(medication);
+            var medicationResource = _mapper.Map<Medication, MedicationResource>(medication);
+
+            return Ok(medicationResource);
         }
 
         /// <summary>
         /// Create a medication
         /// </summary>
-        /// /// <remarks>
-        /// Sample request:
-        /// Post Medications/{apiKey}
-        /// {
-        ///     "MedicationId" = "1D27F736-2BA7-484A-A939-D63344E81194",
-        ///     "MedicationDescription" = "Ventolin Inhaler",
-        ///     "MedicationCost" = 12.45,
-        ///     "PackageSize" = "Case Of 12",
-        ///     "Strength" = "1 MG/MIN",
-        ///     "Sig" = "STAT",
-        ///     "UnitsUsedYtd" = 4,
-        ///     "LastPrescribedDate = "2015-05-30 00:00:00.0000000"
-        /// }
-        /// </remarks>
         /// <param name="medication"></param>
         /// <returns>The newly created medication.</returns>
-        [HttpPost]
-        public async Task<IActionResult> CreateMedication( [Bind("MedicationId, MedicationDescription, MedicationCost, PackageSize, Strength, Sig, UnitsUsedYtd, LastPrescribedDate")] Medication medication)
+        [HttpPost("")]
+        public async Task<ActionResult<MedicationResource>> CreateMedication([FromBody] SaveMedicationResource saveMedicationResource)
         {
-        
-            if (!ModelState.IsValid)
+            var validator = new SaveMedicationResourceValidator();
+
+            var validationResult = await validator.ValidateAsync(saveMedicationResource);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest();
+                return BadRequest(validationResult.Errors);
             }
 
-            medication.MedicationId = Guid.NewGuid();
-            _context.Add(medication);
-            
-            await _context.SaveChangesAsync();
-               
-            return Ok(medication);
+            var medicationToCreate = _mapper.Map<SaveMedicationResource, Medication>(saveMedicationResource);
+
+            var newMedication = await _medicationService.CreateMedication(medicationToCreate);
+
+            var medication = await _medicationService.GetMedicationById(newMedication.MedicationId);
+
+            var medicationResource =  _mapper.Map<Medication, MedicationResource>(medication);
+
+            return Ok(medicationResource);
+
         }
 
         /// <summary>
         /// Edit medication
         /// </summary>
-        /// Sample request:
-        /// Put EditMedication/{apiKey}/{id}
-        /// {
-        ///     "MedicationId" = "1D27F736-2BA7-484A-A939-D63344E81194",
-        ///     "MedicationDescription" = "Ventolin Inhaler",
-        ///     "MedicationCost" = 12.45,
-        ///     "PackageSize" = "Case Of 12",
-        ///     "Strength" = "1 MG/MIN",
-        ///     "Sig" = "STAT",
-        ///     "UnitsUsedYtd" = 4,
-        ///     "LastPrescribedDate = "2015-05-30 00:00:00.0000000"
-        /// }
-        /// </remarks>
         /// <param name="id"></param>
-        /// <param name="medication"></param>
         /// <returns>The edited medication</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditMedication(Guid id, [Bind("MedicationId,MedicationDescription,MedicationCost,PackageSize,Strength,Sig,UnitsUsedYtd,LastPrescribedDate")] Medication medication)
+        public async Task<ActionResult<MedicationResource>> EditMedication(Guid id, [FromBody] SaveMedicationResource saveMedicationResource)
         {
-            if (id != medication.MedicationId)
+            var validator = new SaveMedicationResourceValidator();
+
+            var validationResult = await validator.ValidateAsync(saveMedicationResource);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
+            var medicationToBeUpdate = await _medicationService.GetMedicationById(id);
+         
+            if (medicationToBeUpdate == null)
             {
                 return NotFound();
             }
@@ -129,47 +121,35 @@ namespace CommunityHospitalApi.Controllers
                 return BadRequest();
             }
 
-            if (!_context.Medications.Any(d => d.MedicationId == id))
-            {
-                return NotFound();
-            }
+            var medication = _mapper.Map<SaveMedicationResource, Medication>(saveMedicationResource);
 
-            _context.Update(medication);
-           await _context.SaveChangesAsync();
+            await _medicationService.UpdateMedication(medicationToBeUpdate, medication);
 
-           return Ok(medication);           
+            var updatedMedication = await _medicationService.GetMedicationById(id);
+
+            var updatedMedicationResource = _mapper.Map<Medication, MedicationResource>(updatedMedication);
+
+            return Ok(updatedMedicationResource);
         }
 
         /// <summary>
         /// Delete medication
         /// </summary>
-        /// ///  /// <remarks>
-        /// Sample request:
-        /// Delete DeleteMedication/{apiKey}/{id}
-        /// {
-        /// }
-        /// </remarks>
         /// <param name="id"></param>
         /// <returns>The deleted medication</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMedication(Guid? id)
+        public async Task<IActionResult> DeleteMedication(Guid id)
         {
-            if (id == null)
+            var medication =await _medicationService.GetMedicationById(id);
+             
+            if(medication == null)
             {
                 return NotFound();
             }
 
-            var medication = await _context.Medications.FindAsync(id);
-           
-            if (medication == null)
-            {
-                return NotFound();
-            }
+            await _medicationService.DeleteMedication(medication);
 
-            _context.Medications.Remove(medication);
-            await _context.SaveChangesAsync();
-
-            return Ok(medication);
+            return Ok("Medication deleted.");
         }
     }
 }

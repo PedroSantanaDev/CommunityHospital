@@ -8,6 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using CommunityHospitalApi.Repositories;
+using CommunityHospitalApi.Data;
+using CommunityHospitalApi.Services;
 
 namespace CommunityHospitalApi
 {
@@ -33,6 +36,11 @@ namespace CommunityHospitalApi
             });
 
             services.AddDbContext<CommunityHospitalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CommunityHospitalDatabase")));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
+            services.AddTransient<IMedicationService, MedicationService>();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

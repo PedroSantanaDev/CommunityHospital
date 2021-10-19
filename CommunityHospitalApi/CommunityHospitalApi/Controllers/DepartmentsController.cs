@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CommunityHospitalApi.Database;
 using CommunityHospitalApi.Models;
 using CommunityHospitalApi.Attributes;
+using CommunityHospitalApi.Services;
+using AutoMapper;
+using CommunityHospitalApi.Resources;
+using System.Collections.Generic;
+using CommunityHospitalApi.Validators;
 
 namespace CommunityHospitalApi.Controllers
 {
@@ -14,21 +16,27 @@ namespace CommunityHospitalApi.Controllers
     [Route("[controller]")]
     public class DepartmentsController : Controller
     {
-        private readonly CommunityHospitalDbContext _context;
+        private readonly IDepartmentService _departmentService;
+        private readonly IMapper _mapper;
 
-        public DepartmentsController(CommunityHospitalDbContext context)
+        public DepartmentsController(IDepartmentService departmentService, IMapper mapper)
         {
-            _context = context;
+            _departmentService = departmentService;
+            _mapper = mapper;
         }
 
         /// <summary>
         /// List of departments
         /// </summary>
-        /// <returns></returns>
-        [HttpGet]
+        /// <returns>List of departments</returns>
+        [HttpGet("")]
         public async Task<IActionResult> GetDepartments()
         {
-            return Ok(await _context.Departments.ToListAsync());
+            var departments = await _departmentService.GetAllDepartments();
+
+            var departmentResources = _mapper.Map<IEnumerable<Department>, IEnumerable<DepartmentResource>>(departments);
+
+            return Ok(departmentResources);
         }
 
         /// <summary>
@@ -39,40 +47,43 @@ namespace CommunityHospitalApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDepartment(Guid id)
         {
-            if (id == null)
+            var department = await _departmentService.GetDepartmentById(id);
+            
+            if(department == null)
             {
                 return NotFound();
             }
 
-            var department = await _context.Departments
-                .FirstOrDefaultAsync(m => m.DepartmentId == id);
+            var departmentResource = _mapper.Map<Department, DepartmentResource>(department);
 
-            if (department == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(department);
+            return Ok(departmentResource);
         }
 
         /// <summary>
         /// Create department
         /// </summary>
-        /// <param name="department">Department object</param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<IActionResult> CreateDepartment([Bind("DepartmentName,ManagerFirstName,ManagerLastName,DateCreated")] Department department)
+        [HttpPost("")]
+        public async Task<ActionResult<DepartmentResource>> CreateDepartment([FromBody] SaveDepartmentResource saveDepartmentResource)
         {
-            if (!ModelState.IsValid)
+            var validator = new SaveDepartmentResourceValidator();
+
+            var validationResult = await validator.ValidateAsync(saveDepartmentResource);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest();
+                return BadRequest(validationResult.Errors); 
             }
+                
+            var departmentToCreate = _mapper.Map<SaveDepartmentResource, Department>(saveDepartmentResource);
 
-            department.DepartmentId = Guid.NewGuid();
-            _context.Add(department);
-            await _context.SaveChangesAsync();
-            return Ok(department);
+            var newDepartment = await _departmentService.CreateDepartment(departmentToCreate);
 
+            var department = await _departmentService.GetDepartmentById(newDepartment.DepartmentId);
+
+            var departmentResource = _mapper.Map<Department, DepartmentResource>(department);
+
+            return Ok(departmentResource);
         }
 
 
@@ -80,27 +91,35 @@ namespace CommunityHospitalApi.Controllers
         /// Edit department
         /// </summary>
         /// <param name="id">Department id</param>
-        /// <param name="department">Department object</param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditDepartment(Guid id, [Bind("DepartmentName,ManagerFirstName,ManagerLastName")] Department department)
+        public async Task<ActionResult<DepartmentResource>> EditDepartment(Guid id, [FromBody] SaveDepartmentResource saveDepartmentResource)
         {
-            if (!ModelState.IsValid)
+            var validator = new SaveDepartmentResourceValidator();
+
+            var validationResult = await validator.ValidateAsync(saveDepartmentResource);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest();
+                return BadRequest(validationResult.Errors);
             }
 
-            if (!_context.Departments.Any(d => d.DepartmentId == id))
+            var departmentToBeUpdate = await _departmentService.GetDepartmentById(id);
+
+            if (departmentToBeUpdate == null)
             {
                 return NotFound();
             }
-            
-                 department.DepartmentId = id;
-                _context.Update(department);
-                await _context.SaveChangesAsync();
+               
+            var department = _mapper.Map<SaveDepartmentResource, Department>(saveDepartmentResource);
 
+            await _departmentService.UpdateDepartment(departmentToBeUpdate, department);
 
-            return Ok(department);
+            var updatedDepartment = await _departmentService.GetDepartmentById(id);
+
+            var updatedDepartmentResource = _mapper.Map<Department, DepartmentResource>(updatedDepartment);
+
+            return Ok(updatedDepartmentResource);
         }
 
         /// <summary>
@@ -109,18 +128,18 @@ namespace CommunityHospitalApi.Controllers
         /// <param name="id">Department id</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDepartment( Guid id)
+        public async Task<IActionResult> DeleteDepartment(Guid id)
         {
-            var department = await _context.Departments.FindAsync(id);
+            var department = await _departmentService.GetDepartmentById(id);
 
             if (department == null)
             {
                 return NotFound();
             }
-            _context.Departments.Remove(department);
-            await _context.SaveChangesAsync();
+            
+            await _departmentService.DeleteDepartment(department);
 
-            return Ok(department);
+            return Ok("Department deleted.");
         }
     }
 }
