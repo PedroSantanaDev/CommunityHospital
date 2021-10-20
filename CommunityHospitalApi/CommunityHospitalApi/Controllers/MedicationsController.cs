@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CommunityHospitalApi.Database;
 using CommunityHospitalApi.Models;
 using CommunityHospitalApi.Attributes;
 using CommunityHospitalApi.Services;
@@ -19,7 +16,6 @@ namespace CommunityHospitalApi.Controllers
     [Route("[controller]")]
     public class MedicationsController : Controller
     {
-        private readonly CommunityHospitalDbContext _context;
         private readonly IMedicationService _medicationService;
         private readonly IMapper _mapper;
 
