@@ -40,6 +40,8 @@ namespace CommunityHospitalApi
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IDepartmentService, DepartmentService>();
             services.AddTransient<IMedicationService, MedicationService>();
+            services.AddTransient<INursingUnitService, NursingUnitService>();
+
             services.AddAutoMapper(typeof(Startup));
         }
 

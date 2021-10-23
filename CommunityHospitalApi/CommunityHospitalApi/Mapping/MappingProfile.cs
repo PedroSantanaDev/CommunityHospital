@@ -11,10 +11,12 @@ namespace CommunityHospitalApi.Mapping
             // Domain to Resource
             CreateMap<Department, DepartmentResource>();
             CreateMap<Medication, MedicationResource>();
+            CreateMap<NursingUnit, NursingUnitResource>();
 
-            // Resource to Domain
+            //Resource to Domain
             CreateMap<DepartmentResource, Department>();
             CreateMap<MedicationResource, Medication>();
+            CreateMap<NursingUnitResource, NursingUnit>();
 
             CreateMap<SaveDepartmentResource, Department>();
             CreateMap<SaveMedicationResource, Medication>();

@@ -41,6 +41,11 @@ namespace CommunityHospitalApi.Repositories
             return Context.Set<TEntity>().FindAsync(id);
         }
 
+        public ValueTask<TEntity> GetByIdAsync(string id)
+        {
+            return Context.Set<TEntity>().FindAsync(id);
+        }
+
         public void Remove(TEntity entity)
         {
             Context.Set<TEntity>().Remove(entity);
