@@ -17,12 +17,14 @@ namespace CommunityHospitalApi.Database
         public DbSet<Department> Departments { get; set; }
         public DbSet<Medication> Medications { get; set; }
         public DbSet<NursingUnit> NursingUnits { get; set; }
+        public DbSet<Physician> Physicians { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>().ToTable("Department");
             modelBuilder.Entity<Medication>().ToTable("Medication");
             modelBuilder.Entity<NursingUnit>().ToTable("NursingUnit");
+            modelBuilder.Entity<Physician>().ToTable("Physician");
 
             modelBuilder.Entity<Medication>(m => m.HasCheckConstraint("CK_Cost", "MedicationCost >= 0"));
             modelBuilder.Entity<Medication>().Property(m => m.MedicationCost).HasColumnType("decimal(18,4)");
