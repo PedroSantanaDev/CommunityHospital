@@ -20,6 +20,7 @@ namespace CommunityHospitalApi.Mapping
 
             CreateMap<SaveDepartmentResource, Department>();
             CreateMap<SaveMedicationResource, Medication>();
+            CreateMap<SaveNursingUnitResource, NursingUnit>();
         }
     }
 }
