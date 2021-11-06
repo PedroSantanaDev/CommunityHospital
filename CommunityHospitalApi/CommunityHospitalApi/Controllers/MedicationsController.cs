@@ -112,11 +112,6 @@ namespace CommunityHospitalApi.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
             var medication = _mapper.Map<SaveMedicationResource, Medication>(saveMedicationResource);
 
             await _medicationService.UpdateMedication(medicationToBeUpdate, medication);
