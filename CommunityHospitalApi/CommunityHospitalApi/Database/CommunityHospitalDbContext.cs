@@ -19,6 +19,7 @@ namespace CommunityHospitalApi.Database
         public DbSet<NursingUnit> NursingUnits { get; set; }
         public DbSet<Physician> Physicians { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>().ToTable("Department");

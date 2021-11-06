@@ -10,6 +10,7 @@ namespace CommunityHospitalApi.Data
         private DepartmentRepository _departmentRepository;
         private MedicationRepository _medicationRepository;
         private NursingUnitRepository _nursingUnitRepository;
+        private PhysicianRepository _physicianRepository;
 
         public UnitOfWork(CommunityHospitalDbContext context)
         {
@@ -21,6 +22,8 @@ namespace CommunityHospitalApi.Data
         public IMedicationRepository Medications => _medicationRepository ??= new MedicationRepository(_context);
 
         public INursingUnitRepository NursingUnits => _nursingUnitRepository ??= new NursingUnitRepository(_context);
+
+        public IPhysicianRepository Physicians => _physicianRepository ??= new PhysicianRepository(_context);
 
         public async Task<int> CommitAsync()
         {
