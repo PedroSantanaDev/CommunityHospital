@@ -18,6 +18,7 @@ namespace CommunityHospitalApi.Database
         public DbSet<Medication> Medications { get; set; }
         public DbSet<NursingUnit> NursingUnits { get; set; }
         public DbSet<Physician> Physicians { get; set; }
+        public DbSet<Province> Provinces { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,7 @@ namespace CommunityHospitalApi.Database
             modelBuilder.Entity<Medication>().ToTable("Medication");
             modelBuilder.Entity<NursingUnit>().ToTable("NursingUnit");
             modelBuilder.Entity<Physician>().ToTable("Physician");
+            modelBuilder.Entity<Province>().ToTable("Province");
 
             modelBuilder.Entity<Medication>(m => m.HasCheckConstraint("CK_Cost", "MedicationCost >= 0"));
             modelBuilder.Entity<Medication>().Property(m => m.MedicationCost).HasColumnType("decimal(18,4)");
