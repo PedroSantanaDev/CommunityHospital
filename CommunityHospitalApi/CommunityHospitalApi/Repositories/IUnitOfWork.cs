@@ -9,6 +9,7 @@ namespace CommunityHospitalApi.Repositories
         IMedicationRepository Medications { get; }
         INursingUnitRepository NursingUnits { get; }
         IPhysicianRepository Physicians { get; }
+        IProvinceRepository Provinces { get; }
         Task<int> CommitAsync();
     }
 }

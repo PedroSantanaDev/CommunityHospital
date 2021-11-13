@@ -3,11 +3,12 @@ using CommunityHospitalApi.Models;
 
 namespace CommunityHospitalApi.Repositories
 {
-    public class DepartmentRepository : Repository<Department>, IDepartmentRepository
+    public class ProvinceRepository : Repository<Province>, IProvinceRepository
     {
-        public DepartmentRepository(CommunityHospitalDbContext context)
-            : base(context)
-        { }
+        public ProvinceRepository(CommunityHospitalDbContext context) : base(context)
+        {
+
+        }
 
         private CommunityHospitalDbContext DbContext => Context;
     }
