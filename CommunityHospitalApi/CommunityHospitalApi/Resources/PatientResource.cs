@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityHospitalApi.Models;
+using System;
 
 namespace CommunityHospitalApi.Resources
 {
@@ -55,6 +56,6 @@ namespace CommunityHospitalApi.Resources
         /// <summary>
         /// Patient Province
         /// </summary>
-        public ProvinceResource Province { get; set; }
+        public virtual ProvinceResource Province { get; set; }
     }
 }

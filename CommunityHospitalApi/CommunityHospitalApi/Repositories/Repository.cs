@@ -61,5 +61,16 @@ namespace CommunityHospitalApi.Repositories
             return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
 
+        public async Task <IQueryable<TEntity>> Include(params Expression<Func<TEntity, object>>[] includes)
+        {
+            IQueryable<TEntity> query = null;
+            foreach (var include in includes)
+            {
+               query = Context.Set<TEntity>().Include(include);
+            }
+
+            return query;
+        }
+
     }
 }
