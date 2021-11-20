@@ -43,6 +43,7 @@ namespace CommunityHospitalApi
             services.AddTransient<INursingUnitService, NursingUnitService>();
             services.AddTransient<IPhysicianService, PhysicianService>();
             services.AddTransient<IProvinceService, ProvinceService>();
+            services.AddTransient<IPatientService, PatientService>();
 
             services.AddAutoMapper(typeof(Startup));
         }
