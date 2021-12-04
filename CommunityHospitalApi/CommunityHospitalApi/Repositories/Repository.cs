@@ -26,22 +26,31 @@ namespace CommunityHospitalApi.Repositories
             await Context.Set<TEntity>().AddRangeAsync(entities);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return Context.Set<TEntity>().Where(predicate);
-        }
-
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await Context.Set<TEntity>().ToListAsync();
         }
-
-        public ValueTask<TEntity> GetByIdAsync(Guid id)
+        public IQueryable<TEntity> GetAll()
         {
-            return Context.Set<TEntity>().FindAsync(id);
+            return Context.Set<TEntity>();
         }
 
-        public ValueTask<TEntity> GetByIdAsync(string id)
+        public  IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> queryable = GetAll();
+            foreach (Expression<Func<TEntity, object>> includeProperty in includeProperties)
+            {
+                queryable = queryable.Include(includeProperty);
+            }
+
+            return queryable;
+        }
+        public async Task<IEnumerable<TEntity>> GetAllIncludingAsync(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            return await GetAllIncluding(includeProperties).ToListAsync();
+        }
+
+        public ValueTask<TEntity> GetByIdAsync(object id)
         {
             return Context.Set<TEntity>().FindAsync(id);
         }
@@ -59,17 +68,6 @@ namespace CommunityHospitalApi.Repositories
         public Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
-        }
-
-        public async Task <IQueryable<TEntity>> Include(params Expression<Func<TEntity, object>>[] includes)
-        {
-            IQueryable<TEntity> query = null;
-            foreach (var include in includes)
-            {
-               query = Context.Set<TEntity>().Include(include);
-            }
-
-            return query;
         }
 
     }

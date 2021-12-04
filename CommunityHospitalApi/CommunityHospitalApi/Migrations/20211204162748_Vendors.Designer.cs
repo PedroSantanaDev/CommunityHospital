@@ -4,14 +4,16 @@ using CommunityHospitalApi.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommunityHospitalApi.Migrations
 {
     [DbContext(typeof(CommunityHospitalDbContext))]
-    partial class CommunityHospitalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211204162748_Vendors")]
+    partial class Vendors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,7 +210,7 @@ namespace CommunityHospitalApi.Migrations
                     b.Property<string>("ContactLastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PostalCode")
+                    b.Property<string>("Postal_Code")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ProvinceId")

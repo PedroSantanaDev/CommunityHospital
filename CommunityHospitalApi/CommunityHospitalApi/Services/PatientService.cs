@@ -30,7 +30,7 @@ namespace CommunityHospitalApi.Services
 
         public async Task<IEnumerable<Patient>> GetAllPatients()
         {
-           return await _unitOfWork.Patients.Include(p=>p.Province);
+           return  await _unitOfWork.Patients.GetAllIncludingAsync(includeProperties: p => p.Province);
         }
 
         public async Task<Patient> GetPatientById(Guid id)
