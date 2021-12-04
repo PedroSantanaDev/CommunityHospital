@@ -11,6 +11,7 @@ namespace CommunityHospitalApi.Repositories
         IPhysicianRepository Physicians { get; }
         IProvinceRepository Provinces { get; }
         IPatientRepository Patients { get; }
+        IVendorRepository Vendors { get; }
         Task<int> CommitAsync();
     }
 }

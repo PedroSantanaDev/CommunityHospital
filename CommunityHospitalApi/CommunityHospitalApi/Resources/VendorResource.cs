@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CommunityHospitalApi.Models
+namespace CommunityHospitalApi.Resources
 {
-    public class Vendor
+    public class VendorResource
     {
         /// <summary>
         /// Vendor id
@@ -37,12 +37,8 @@ namespace CommunityHospitalApi.Models
         /// </summary>
         public decimal PurchasesYtd { get; set; }
         /// <summary>
-        /// Vendor province id
-        /// </summary>
-        public Guid ProvinceId { get; set; }
-        /// <summary>
         /// vendor province
         /// </summary>
-        public Province Province { get; set; }
+        public virtual ProvinceResource Province { get; set; }
     }
 }
