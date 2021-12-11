@@ -12,6 +12,7 @@ namespace CommunityHospitalApi.Repositories
         IProvinceRepository Provinces { get; }
         IPatientRepository Patients { get; }
         IVendorRepository Vendors { get; }
+        IAdmissionRepository Admissions { get; }
         Task<int> CommitAsync();
     }
 }

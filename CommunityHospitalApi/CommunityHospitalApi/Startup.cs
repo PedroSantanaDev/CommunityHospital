@@ -45,6 +45,7 @@ namespace CommunityHospitalApi
             services.AddTransient<IProvinceService, ProvinceService>();
             services.AddTransient<IPatientService, PatientService>();
             services.AddTransient<IVendorService, VendorService>();
+            services.AddTransient<IAdmissionService, AdmissionService>();
 
             services.AddAutoMapper(typeof(Startup));
         }

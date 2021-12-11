@@ -40,8 +40,5 @@ namespace CommunityHospitalApi.Resources
         /// Vendor province id
         /// </summary>
         public Guid ProvinceId { get; set; }
-        /// <summary>
-        /// vendor province
-        /// </summary>
     }
 }
