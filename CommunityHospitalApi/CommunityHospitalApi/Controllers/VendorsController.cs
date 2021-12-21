@@ -100,16 +100,16 @@ namespace CommunityHospitalApi.Controllers
                 return BadRequest(validationResult.Errors);
             }
 
-            var VendortToBeUpdated = await _vendorService.GetVendorById(id);
+            var vendorToBeUpdated = await _vendorService.GetVendorById(id);
 
-            if (VendortToBeUpdated == null)
+            if (vendorToBeUpdated == null)
             {
                 return NotFound();
             }
 
-            var Vendort = _mapper.Map<SaveVendorResource, Vendor>(saveVendorResource);
+            var vendor = _mapper.Map<SaveVendorResource, Vendor>(saveVendorResource);
 
-            await _vendorService.UpdateVendor(VendortToBeUpdated, Vendort);
+            await _vendorService.UpdateVendor(vendorToBeUpdated, vendor);
 
             var updatedVendor = await _vendorService.GetVendorById(id);
 

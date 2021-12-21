@@ -2,7 +2,6 @@
 using CommunityHospitalApi.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CommunityHospitalApi.Services
@@ -34,7 +33,7 @@ namespace CommunityHospitalApi.Services
 
         public async Task<IEnumerable<Admission>> GetAllAdmissions()
         {
-            return await _unitOfWork.Admissions.GetAllIncludingAsync( a => new { a.Physician, a.Patient, a.NursingUnit });
+            return await _unitOfWork.Admissions.GetAllIncludingAsync(a => a.Physician, a => a.NursingUnit, a => a.Patient);
         }
 
         public async Task UpdateAdmission(Admission admissionToBeUpdated, Admission admission)

@@ -35,7 +35,7 @@ namespace CommunityHospitalApi.Resources
         /// <summary>
         /// Nursing unit id
         /// </summary>
-        public Guid NursingUnitId { get; set; }
+        public string NursingUnitId { get; set; }
         /// <summary>
         /// Room number
         /// </summary>
