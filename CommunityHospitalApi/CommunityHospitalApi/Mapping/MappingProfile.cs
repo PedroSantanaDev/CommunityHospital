@@ -17,6 +17,7 @@ namespace CommunityHospitalApi.Mapping
             CreateMap<Patient, PatientResource>();
             CreateMap<Vendor, VendorResource>();
             CreateMap<Admission, AdmissionResource>();
+            CreateMap<Encounter, EncounterResource>();
 
             //Resource to Domain
             CreateMap<DepartmentResource, Department>();
@@ -27,6 +28,7 @@ namespace CommunityHospitalApi.Mapping
             CreateMap<PatientResource, Patient>();
             CreateMap<VendorResource, Vendor>();
             CreateMap<AdmissionResource, Admission>();
+            CreateMap<EncounterResource, Encounter>();
 
             CreateMap<SaveDepartmentResource, Department>();
             CreateMap<SaveMedicationResource, Medication>();
@@ -36,6 +38,7 @@ namespace CommunityHospitalApi.Mapping
             CreateMap<SavePatientResource, Patient>();
             CreateMap<SaveVendorResource, Vendor>();
             CreateMap<SaveAdmissionResource, Admission>();
+            CreateMap<SaveEncounterResource, Encounter>();
 
         }
     }
